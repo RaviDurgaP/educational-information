@@ -1,0 +1,696 @@
+openapi: '3.0.0'
+info:
+  title: eduacational service v1.5
+  version: '1.0'
+
+paths:
+  /Institutions/getAll:
+    get:
+      summary: get all institutions
+      tags:
+        - Institutions
+      parameters:
+        - $ref: "#/components/parameters/InstitutionId"
+        - name: date
+          in: query
+          schema:
+            format: date
+            type: string
+          required: false
+        - name: isCompleted
+          in: query
+          schema: 
+            type: boolean
+          required: false
+      
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InstitutionPagedResultDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+  /Institutions/get:
+    get:
+      summary: get specific institution
+      tags:
+        - Institutions
+      parameters:
+        - $ref: "#/components/parameters/idParam"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                
+                $ref: "#/components/schemas/InstitutionDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /Institutions/create:
+    post:
+      summary: create new institutions
+      tags:
+        - Institutions
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/InstitutionDto"
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                
+                $ref: "#/components/schemas/InstitutionDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /Institutions/update:
+    put:
+      summary: update the new institutions
+      tags:
+        - Institutions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              
+                $ref: "#/components/schemas/InstitutionDto"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+               
+                $ref: "#/components/schemas/InstitutionDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /Institutions/delete:
+    delete:
+      summary: delete the institution
+      tags:
+        - Institutions
+      parameters:
+        - $ref: "#/components/parameters/idParam"
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+          
+  /studentenroll/getall:
+    get:
+      summary: get all students
+      tags:
+        - StudentEnroll
+      parameters:
+        - $ref: "#/components/parameters/StudentId"
+        - name: date
+          in: query
+          schema:
+            format: date
+            type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentEnrollResultDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+  /studentenroll/get:
+    get:
+      summary: get specific student
+      tags:
+        - StudentEnroll
+      parameters:
+        - $ref: "#/components/parameters/idParam"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                
+                $ref: "#/components/schemas/InstitutionDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /studentenroll/create:
+    post:
+      summary: create new student
+      tags:
+        - StudentEnroll
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/StudentEnrollDto"
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                
+                $ref: "#/components/schemas/StudentEnrollDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /Studentenroll/update:
+    put:
+      summary: update the new student
+      tags:
+        - StudentEnroll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              
+                $ref: "#/components/schemas/StudentEnrollDto"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+               
+                $ref: "#/components/schemas/StudentEnrollDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /studentenroll/delete:
+    delete:
+      summary: delete the student
+      tags:
+        - StudentEnroll
+      parameters:
+        - $ref: "#/components/parameters/idParam"
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /branch/getall:
+    get:
+      summary: get all branches
+      tags:
+        - BranchName
+      parameters:
+        - $ref: "#/components/parameters/BranchId"
+        - name: date
+          in: query
+          schema:
+            format: date
+            type: string
+          required: false
+        - name: isCompleted
+          in: query
+          schema: 
+            type: boolean
+          required: false
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BranchEnrollResultDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+  /branch/get:
+    get:
+      summary: get specific branch
+      tags:
+        - BranchName
+      parameters:
+        - $ref: "#/components/parameters/idParam"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                
+                $ref: "#/components/schemas/InstitutionDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /branch/create:
+    post:
+      summary: create new branch
+      tags:
+        - BranchName
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/StudentEnrollDto"
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                
+                $ref: "#/components/schemas/StudentEnrollDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /branch/update:
+    put:
+      summary: update the new branch
+      tags:
+        - BranchName
+      requestBody:
+        content:
+          application/json:
+            schema:
+              
+                $ref: "#/components/schemas/StudentEnrollDto"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+               
+                $ref: "#/components/schemas/StudentEnrollDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /branch/delete:
+    delete:
+      summary: delete the student
+      tags:
+        - BranchName
+      parameters:
+        - $ref: "#/components/parameters/idParam"
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /transportation/getall:
+    get:
+      summary: get all transportation details of student
+      tags:
+        - Transportation
+      parameters:
+        - $ref: "#/components/parameters/TransportationId"
+        - name: date
+          in: query
+          schema:
+            format: date
+            type: string
+          required: false
+        - name: isCompleted
+          in: query
+          schema: 
+            type: boolean
+          required: false
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransportationEnrollResultDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+  /transportation/get:
+    get:
+      summary: get specific student transportation details
+      tags:
+        - Transportation
+      parameters:
+        - $ref: "#/components/parameters/idParam"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                
+                $ref: "#/components/schemas/TransportationEnrollDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /transportation/create:
+    post:
+      summary: create transportation details of student 
+      tags:
+        - Transportation
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/TransportationEnrollDto"
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                
+                $ref: "#/components/schemas/TransportationEnrollDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /transportation/update:
+    put:
+      summary: update the transportation details of the student
+      tags:
+        - Transportation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              
+                $ref: "#/components/schemas/TransportationEnrollDto"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+               
+                $ref: "#/components/schemas/TransportationEnrollDto"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+  /transportation/delete:
+    delete:
+      summary: delete the transportation details of student
+      tags:
+        - Transportation
+      parameters:
+        - $ref: "#/components/parameters/idParam"
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/ResourceNotFoundError"
+        "422":
+          $ref: "#/components/responses/UnAcceptableInputs"
+          
+      
+  
+   
+  
+  
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    idParam:
+      name: Id
+      in: query
+      required: true
+      schema:
+        type: string
+    limitParam:
+      name: Limit
+      in: query
+      schema:
+        type: integer
+        nullable: true
+    directionParam:
+      name: Direction
+      in: query
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
+        default: asc
+    sortByFieldParam:
+      name: SortByField
+      in: query
+      schema:
+        type: string
+        nullable: true
+    InstitutionId:
+      name: Institutionname
+      in: query
+      required: true
+      schema:
+        type: string
+    BranchId:
+      name: BranchName
+      in: query
+      required: true
+      schema:
+        type: string
+    StudentId:
+      name: StudentId
+      in: query
+      required: true
+      schema:
+        type: string
+    TransportationId:
+      name: transportbusno
+      in: query
+      required: true
+      schema:
+        type: string
+    
+  responses:
+    Success:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/MessageDto"
+    ResourceNotFoundError:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/MessageDto"
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/MessageDto"
+    UnAcceptableInputs:
+      description: Invalid Inputs
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/MessageDto"
+  schemas:
+    MessageDto:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
+    
+    InstitutionPagedResultDto:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/InstitutionDto"
+   
+    InstitutionDto:
+      type: object
+      properties:
+        InstitutionId:
+          type: string
+        Institutionname:
+          type: string
+        createdAt:
+          format: DateTime
+          type: string
+          nullable: true
+        updatedAt:
+          format: DateTime
+          type: string
+          nullable: true
+        dueDate:
+          format: date
+          type: string
+        isCompleted:
+          type: boolean
+        
+        isExist:
+          type: boolean
+        BranchId:
+          type: string
+        BranchName:
+          type: string
+        Transportationavailable:
+          type: boolean
+        StudentId:
+          type: string
+        StudentBranch:
+          type: string
+        Transportationbusno:
+          type: number
+        
+        Hostel:
+          type: boolean
+        
+      required:
+        - StudentId
+        - InstitutionId
+        - BranchId
+    StudentEnrollResultDto:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/StudentEnrollDto"
+    StudentEnrollDto:
+      type: object
+      properties:
+        InstitutionId:
+          type: string
+        Institutionname:
+          type: string
+        createdAt:
+          format: DateTime
+          type: string
+          nullable: true
+        StudentId:
+          type: string
+        StudentBranch:
+          type: string
+        StudentBusNo:
+          type: integer
+        InstitutionName:
+          type: string
+    BranchEnrollResultDto:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/BranchEnrollDto"
+    BranchEnrollDto:
+      type: object
+      properties:
+        InstitutionId:
+          type: string
+        Institutionname:
+          type: string
+        BranchName:
+          type: string
+        BranchId:
+          type: string
+        StudentName:
+          type: string
+        Facultymembers:
+          type: string
+    TransportationEnrollResultDto:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/TransportationEnrollDto"
+    TransportationEnrollDto:
+      type: object
+      properties:
+        InstitutionId:
+          type: string
+        Institutionname:
+          type: string
+        BranchName:
+          type: string
+        BranchId:
+          type: string
+        isExist:
+          type: boolean
+        StudentName:
+          type: string
+        transportbusno:
+          type: string
+    
+    
+security:
+  - bearerAuth: []
